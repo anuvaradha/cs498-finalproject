@@ -57,13 +57,14 @@
                "translate(" + margin.left + "," + margin.top + ")");
 
          // Get the data
-         d3.csv("201801-fordgobike-tripdata.csv", function(error, data) {
-            if (error) throw error;
-            // format the data
-           var numberOfRows = data.length;
-            data.forEach(function(d) {
-               d.end_station_name = d.end_station_name;
-               d.bike_id = +d.bike_id;
+         d3.csv("201801-fordgobike-tripdata.csv", function(d) {
+            return {
+                start_station_name : d.start_station_name,
+                bike_id : d.bike_id,
+                number_of_records = d.length;
+              };
+            }, function(data) {
+              console.log(data[0]);
             });
            
       </script>
