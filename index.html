@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <style>
+  .land {
+  fill: #ddd;
+}
+
+.border {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
 .state-borders {
   fill: none;
   stroke: #fff;
@@ -21,7 +31,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src = "https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/topojson.v2.min.js"></script>
-  <svg width="960" height="600"></svg>
 </head>
 <body>
 
@@ -44,15 +53,22 @@
   
   
 <div class="container">
-  <h3>Right Aligned Navbar</h3>
-  <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
-  <ul class="pagination">
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-  </ul>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Right Aligned Navbar</h3>
+      <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
+      <ul class="pagination">
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-8">
+    </div>
+        <svg width="960" height="600"></svg>
+  </div>
 </div>
   
    <script>
@@ -71,8 +87,14 @@
               .attr("d", path);
 
           svg.append("path")
-              .attr("class", "state-borders")
-              .attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
+              .datum(topojson.feature(us, us.objects.nation))
+              .attr("class", "land")
+              .attr("d", path);
+
+          svg.append("path")
+              .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+              .attr("class", "border border--state")
+              .attr("d", path);
         });
 
          // Get the data
