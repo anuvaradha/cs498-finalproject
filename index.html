@@ -216,6 +216,17 @@ function showSlides(n) {
      
         var geoPath = d3.geoPath()
           .projection( albersProjection );
+     
+        d3.json("SFgeo.json", function(data) {
+        g.selectAll("path").data(data.features)
+        .enter().append("svg:path")
+        .attr("d", path)
+        .style("fill", function() { return "teal" })
+        .on("mouseover", function(e){d3.select(this).style("fill", "gray")})
+        .on("mouseout", function(e){d3.select(this).style("fill", "teal")})
+        .attr("stroke","white")
+        .attr("stroke-width", 1)
+      });
 
          // Get the data
          d3.csv("201801-fordgobike-tripdata.csv", function(d) {
