@@ -128,7 +128,7 @@ img {vertical-align: middle;}
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src = "https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/topojson.v2.min.js"></script>
-  <script src="SFgeo.json"></script>
+  <script src="SFCounty.topojson"></script>
 </head>
 <body>
 
@@ -206,36 +206,43 @@ function showSlides(n) {
 </script>
   
    <script>
-        var svg = d3.select("svg");
-
-        var g = svg.append( "g" );
-     
-        var albersProjection = d3.geoAlbers()
-          .scale( 190000 )
-          .rotate( [122.4183,0] )
-          .center( [0, 37.7750] );
-     
-        var geoPath = d3.geoPath()
-          .projection( albersProjection );
-     
-        g.selectAll( "path" )
-        .data( neighborhoods_json.features )
-        .enter()
-        .append( "path" )
-        .attr( "fill", "#ccc" )
-        .attr( "stroke", "#333")
-        .attr( "d", geoPath );
-
-         // Get the data
-         d3.csv("201801-fordgobike-tripdata.csv", function(d) {
-            return {
+    d3.queue()
+    .defer(d3.json, "data/ny-quantize-topo.json")
+    .defer(d3.csv, "201801-fordgobike-tripdata.csv", function(d) { 
+        return {
                 start_station_name : d.start_station_name,
                 bike_id : d.bike_id,
                 number_of_records : d.length
               };
             }, function(data) {
               console.log(data[0]);
-            });
+            })
+    .await(ready);
+     
+    function ready(error, data) {
+
+    if (error) throw error;
+
+    // new york topojson
+    var sf_county = topojson.feature(data, {
+        type: "GeometryCollection",
+        geometries: data.objects.SFCounty.geometries
+    });
+
+    // projection and path
+    var projection = d3.geoAlbersUsa()
+        .fitExtent([[20, 20], [460, 580]], sf_county);
+
+    var geoPath = d3.geoPath()
+        .projection(projection);
+
+    // draw san francisco map and bind data
+    d3.select("svg").selectAll("path")
+        .data(sf_county.features)
+        .enter()
+        .append("path")
+        .attr("d", geoPath)
+        .attr("fill", "green");
            
       </script>
 
