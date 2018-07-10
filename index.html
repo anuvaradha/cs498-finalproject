@@ -128,7 +128,7 @@ img {vertical-align: middle;}
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src = "https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/topojson.v2.min.js"></script>
-  <script src="SFCounty.topojson"></script>
+  <script src="SFCounty_topo.json"></script>
 </head>
 <body>
 
@@ -207,7 +207,7 @@ function showSlides(n) {
   
    <script>
     d3.queue()
-    .defer(d3.json, "data/ny-quantize-topo.json")
+    .defer(d3.json, "SFCounty_topo.json")
     .defer(d3.csv, "201801-fordgobike-tripdata.csv", function(d) { 
         return {
                 start_station_name : d.start_station_name,
@@ -223,7 +223,7 @@ function showSlides(n) {
 
     if (error) throw error;
 
-    // new york topojson
+    // san francisco topojson
     var sf_county = topojson.feature(data, {
         type: "GeometryCollection",
         geometries: data.objects.SFCounty.geometries
