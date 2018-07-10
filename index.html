@@ -211,7 +211,7 @@ function showSlides(n) {
     .attr("width", 960)
     .attr("height", 600);
      
-     var path = d3.geo.path()
+     var path = d3.geoPath()
     .projection(null);
      
     d3.json("SFCounty_topo.json", function(error, sf) {
