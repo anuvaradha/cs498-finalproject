@@ -153,7 +153,7 @@ img {vertical-align: middle;}
 <div class="mySlides">
       <h3>Right Aligned Navbar</h3>
       <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
-      <svg id="viz" width="960" height="600"></svg>
+      <svg class="viz" width="960" height="600"></svg>
 </div>
 
 <div class="mySlides">
@@ -237,7 +237,7 @@ function showSlides(n) {
         .projection(projection);
 
     // draw san francisco map and bind data
-    d3.select("#viz").selectAll("path")
+    d3.select("svg.viz").selectAll("path")
         .data(sf_county.features)
         .enter()
         .append("path")
