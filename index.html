@@ -218,7 +218,7 @@ function showSlides(n) {
       d3.csv("201801-fordgobike-tripdata.csv", function(d) {
         data.forEach(function(d) {
            d.start_time = parseTime(d.start_time);
-        }
+        });
         data.forEach(function(d) {
             var key = d.start_time;
               if (!counts[key]) {
