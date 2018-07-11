@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <style>
-  .land {
-  fill: #ddd;
+
+.bar {
+  fill: steelblue;
 }
 
-.border {
-  fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
-  stroke-linecap: round;
+.bar:hover {
+  fill: brown;
 }
-.state-borders {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 0.5px;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  pointer-events: none;
+
+.axis--x path {
+  display: none;
 }
   
 * {box-sizing: border-box}
@@ -128,7 +122,6 @@ img {vertical-align: middle;}
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src = "https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/topojson.v2.min.js"></script>
-  <script src="SFCounty_topo.json"></script>
 </head>
 <body>
 
@@ -153,7 +146,7 @@ img {vertical-align: middle;}
 <div class="mySlides">
       <h3>Right Aligned Navbar</h3>
       <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
-      <!--<svg width="960" height="600"></svg>-->
+      <svg width="960" height="500"></svg>
 </div>
 
 <div class="mySlides">
@@ -207,21 +200,69 @@ function showSlides(n) {
   
    <script>
    
-     var svg = d3.select(".myclass").append("svg")
-    .attr("width", 960)
-    .attr("height", 600);
+    var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+      var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+          y = d3.scaleLinear().rangeRound([height, 0]);
+
+      var g = svg.append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
      
-     var path = d3.geoPath()
-    .projection(null);
+     var parseTime = d3.timeParse("%e");
      
-    d3.json("SFCounty_topo.json", function(error, sf) {
-    if (error) return console.error(error);
-        svg.append("path")
-        .datum(topojson.feature(sf, sf.objects.SFCounty))
-        .attr("class", "land")
-        .attr("d", path);
-        
-    });
+     var counts = {};
+
+      d3.csv("201801-fordgobike-tripdata.csv", function(d) {
+        data.forEach(function(d) {
+           d.start_time = parseTime(d.start_time);
+        }
+        data.forEach(function(d) {
+            var key = d.start_time;
+              if (!counts[key]) {
+                  counts[key] = {
+                     day: d.start_time,
+                     count: 0
+                  };
+              }
+              counts[key].count++;
+            });
+        Object.keys(counts).forEach(function(key) {
+            d.push(counts[key]);
+        });
+        return d;
+      }, function(error, data) {
+        if (error) throw error;
+
+        x.domain(data.map(function(d) { return d.start_time; }));
+        y.domain([0, d3.max(data, function(d) { return d.counts; })]);
+
+        g.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        g.append("g")
+            .attr("class", "axis axis--y")
+            .call(d3.axisLeft(y).ticks(500))
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("Frequency");
+
+        g.selectAll(".bar")
+          .data(data)
+          .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d.start_time); })
+            .attr("y", function(d) { return y(d.counts); })
+            .attr("width", x.bandwidth())
+            .attr("height", function(d) { return height - y(d.counts); });
+      });
            
    </script>
 
