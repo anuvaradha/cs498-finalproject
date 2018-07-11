@@ -238,7 +238,7 @@ function showSlides(n) {
             data.push(counts[key]);
         });
 
-        x.domain(data.map(function(d) { return d.start_time; }));
+        /*x.domain(data.map(function(d) { return d.start_time; }));
         y.domain([0, d3.max(data, function(d) { return d.counts; })]);
 
         g.append("g")
@@ -263,7 +263,9 @@ function showSlides(n) {
             .attr("x", function(d) { return x(d.start_time); })
             .attr("y", function(d) { return y(d.counts); })
             .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(d.counts); });
+            .attr("height", function(d) { return height - y(d.counts); });*/
+        
+        console.log(data[0]);
       });
            
    </script>
