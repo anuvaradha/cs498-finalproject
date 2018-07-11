@@ -211,7 +211,7 @@ function showSlides(n) {
       var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
      
-     var parseTime = d3.time.format("%m/%d/%Y").parse;
+     var parseTime = d3.timeParse("%m-%d-%Y");
      
      var counts = {};
 
