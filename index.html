@@ -226,7 +226,7 @@ function showSlides(n) {
           });
         
           data.forEach(function(d) {
-            var key = d.date;
+            var key = d.date - 1;
               if (!counts[key]) {
                   counts[key] = {
                      day: d.date,
