@@ -262,7 +262,7 @@ function showSlides(n) {
           .enter().append("rect")
             .attr("class", "bar")
             .attr("x", function(d) { return x(d.date); })
-            .attr("y", function(i) { return y(counts[i].count); })
+            .attr("y", function(d, i) { return y(counts[i].count); })
             .attr("width", x.bandwidth())
             .attr("height", function(d, i) { return height - y(counts[i].count); });
         console.log(data[0]);
