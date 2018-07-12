@@ -212,19 +212,21 @@ function showSlides(n) {
       var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
      
-     var parseTime = d3.timeParse("%d");
+     var parseTime = d3.timeParse("%d-%b-%y");
      
      var counts = {};
 
-      d3.csv("201801-fordgobike-tripdata.csv")
-        .row(function(d) {
-          return {
-            date: parseTime(d.start_time)
-          };
-        })
-        .get(function(error, data) {
-          console.log(data[0]);
-        });
+      d3.csv("201801-fordgobike-tripdata.csv", function(error, data) {
+          if (error) throw error;
+
+          // format the data
+          data.forEach(function(d) {
+              d.date = parseTime(d.date);
+              d.close = +d.close;
+          });
+        console.log(data[0]);
+      }
+
         
         /*data.forEach(function(d) {
            d.start_time = parseTime(d.start_time);
