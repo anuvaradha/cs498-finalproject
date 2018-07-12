@@ -212,7 +212,7 @@ function showSlides(n) {
       var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
      
-     var parseTime = d3.timeParse("%d-%b-%y");
+     var parseTime = d3.timeFormat("%e");
      
      var counts = {};
 
@@ -221,7 +221,8 @@ function showSlides(n) {
 
           // format the data
           data.forEach(function(d) {
-              d.date = parseTime(d.start_time);
+              var date = new Date(d.start_time)
+              d.date = parseTime(date);
           });
         console.log(data[0]);
       });
