@@ -224,19 +224,12 @@ function showSlides(n) {
               var date = new Date(d.start_time)
               d.date = parseTime(date);
           });
-        console.log(data[0]);
-      });
-
         
-        /*data.forEach(function(d) {
-           d.start_time = parseTime(d.start_time);
-        });*/
-        
-        /*data.forEach(function(d) {
-            var key = d.start_time;
+          data.forEach(function(d) {
+            var key = d.date;
               if (!counts[key]) {
                   counts[key] = {
-                     day: d.start_time,
+                     day: d.date,
                      count: 0
                   };
               }
@@ -244,7 +237,9 @@ function showSlides(n) {
         });
         Object.keys(counts).forEach(function(key) {
             data.push(counts[key]);
-        });*/
+        });
+        console.log(data[0]);
+      });
 
         /*x.domain(data.map(function(d) { return d.start_time; }));
         y.domain([0, d3.max(data, function(d) { return d.counts; })]);
