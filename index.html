@@ -239,9 +239,6 @@ function showSlides(n) {
             data.push(counts[key]);
         });
         
-        data.forEach(function(d) {
-              d.counts = counts;
-          });
         
         x.domain(data.map(function(d) { return d.date; }));
         y.domain([0, d3.max(counts, function(d, i) { return d[i].count; })]);
@@ -266,9 +263,9 @@ function showSlides(n) {
           .enter().append("rect")
             .attr("class", "bar")
             .attr("x", function(d) { return x(d.date); })
-            .attr("y", function(d, i) { return y(d.counts[i].count); })
+            .attr("y", function(d, i) { return y(d.date - 1); })
             .attr("width", x.bandwidth())
-            .attr("height", function(d, i) { return height - y(d.counts[i].count); });
+            .attr("height", function(d, i) { return height - y(d.date - 1); });
         console.log(data[0]);
       });
            
