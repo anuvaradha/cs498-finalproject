@@ -211,13 +211,14 @@ function showSlides(n) {
       var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
      
-     var parseTime = d3.timeFormat("%e");
+     var parseTime = d3.timeParse("%e");
      
      var counts = {};
 
       d3.csv("201801-fordgobike-tripdata.csv", function(d) {
-        d.start_time = parseTime(d.start_time);
-        return d;
+        return {
+          start_time: parseTime(d.start_time);
+        };
       }, function(error, data) {
         if (error) throw error;
         
