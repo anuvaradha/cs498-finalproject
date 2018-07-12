@@ -222,7 +222,7 @@ function showSlides(n) {
           // format the data
           data.forEach(function(d) {
               var date = new Date(d.start_time)
-              d.date = parseTime(date);
+              d.date = parseTime(date).trim();
           });
         
           data.forEach(function(d) {
@@ -240,7 +240,7 @@ function showSlides(n) {
         });
         
         x.domain(data.map(function(d) { return d.date; }));
-        y.domain([0, d3.max(data, function(d, i) { return counts[i]; })]);
+        y.domain([0, d3.max(data, function(d, i) { return counts[i].count; })]);
 
         g.append("g")
             .attr("class", "axis axis--x")
@@ -262,9 +262,9 @@ function showSlides(n) {
           .enter().append("rect")
             .attr("class", "bar")
             .attr("x", function(d) { return x(d.date); })
-            .attr("y", function(d, i) { return y(counts[i]); })
+            .attr("y", function(d, i) { return y(counts[i].count); })
             .attr("width", x.bandwidth())
-            .attr("height", function(d, i) { return height - y(counts[i]); });
+            .attr("height", function(d, i) { return height - y(counts[i].count); });
         console.log(data[0]);
       });
            
