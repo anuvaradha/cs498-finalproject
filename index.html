@@ -238,11 +238,9 @@ function showSlides(n) {
         Object.keys(counts).forEach(function(key) {
             data.push(counts[key]);
         });
-        console.log(data[0]);
-      });
-
-        /*x.domain(data.map(function(d) { return d.start_time; }));
-        y.domain([0, d3.max(data, function(d) { return d.counts; })]);
+        
+        x.domain(data.map(function(d) { return d.date; }));
+        y.domain([0, d3.max(data, function(d) { return counts; })]);
 
         g.append("g")
             .attr("class", "axis axis--x")
@@ -263,13 +261,12 @@ function showSlides(n) {
           .data(data)
           .enter().append("rect")
             .attr("class", "bar")
-            .attr("x", function(d) { return x(d.start_time); })
-            .attr("y", function(d) { return y(d.counts); })
+            .attr("x", function(d) { return x(d.date); })
+            .attr("y", function(d) { return y(counts); })
             .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(d.counts); });*/
-        
-       /* console.log(data[0]);
-      });*/
+            .attr("height", function(d) { return height - y(counts); });
+        console.log(data[0]);
+      });
            
    </script>
 
