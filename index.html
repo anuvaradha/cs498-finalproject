@@ -228,13 +228,13 @@ function showSlides(n) {
 
         g.append("g")
             .attr("class", "axis axis--y")
-            .call(d3.axisLeft(y).ticks(500))
-          .append("text")
+            .call(d3.axisLeft(y).ticks(500));
+          /*.append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
-            .text("Frequency");
+            .text("Frequency");*/
 
         g.selectAll(".bar")
           .data(data)
@@ -243,7 +243,7 @@ function showSlides(n) {
             .attr("x", function(d) { return x(d.Day); })
             .attr("y", function(d) { return y(d.Frequency); })
             .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(d.Frequency); });
+            .attr("height", function(d) { return height - y(d.Frequency); });
 });
            
    </script>
