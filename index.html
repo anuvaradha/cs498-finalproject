@@ -212,36 +212,14 @@ function showSlides(n) {
       var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
      
-     var parseTime = d3.timeFormat("%e");
-     
-     var counts = {};
+     d3.csv("Chart1_data.csv", function(d) {
+        d.Frequency = +d.Frequency;
+        return d;
+      }, function(error, data) {
+        if (error) throw error;
 
-      d3.csv("201801-fordgobike-tripdata.csv", function(error, data) {
-          if (error) throw error;
-
-          // format the data
-          data.forEach(function(d) {
-              var date = new Date(d.start_time)
-              d.date = parseTime(date).trim();
-          });
-        
-          data.forEach(function(d) {
-            var key = d.date - 1;
-              if (!counts[key]) {
-                  counts[key] = {
-                     day: d.date,
-                     count: 0
-                  };
-              }
-              counts[key].count++;
-        });
-        Object.keys(counts).forEach(function(key) {
-            data.push(counts[key]);
-        });
-        
-        
-        x.domain(data.map(function(d) { return d.date; }));
-        y.domain([0, d3.max(counts, function(d, i) { return d[i].count; })]);
+        x.domain(data.map(function(d) { return d.Day; }));
+        y.domain([0, d3.max(data, function(d) { return d.Frequency; })]);
 
         g.append("g")
             .attr("class", "axis axis--x")
@@ -262,12 +240,11 @@ function showSlides(n) {
           .data(data)
           .enter().append("rect")
             .attr("class", "bar")
-            .attr("x", function(d) { return x(d.date); })
-            .attr("y", function(d, i) { return y(d.date - 1); })
+            .attr("x", function(d) { return x(d.Day); })
+            .attr("y", function(d) { return y(d.Frequency); })
             .attr("width", x.bandwidth())
-            .attr("height", function(d, i) { return height - y(d.date - 1); });
-        console.log(data[0]);
-      });
+      .attr("height", function(d) { return height - y(d.Frequency); });
+});
            
    </script>
 
