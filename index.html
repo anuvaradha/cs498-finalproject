@@ -114,6 +114,14 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
 }
+  .tooltip {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    width: 60px; height: 40px;
+    background: white;
+    border: 0px;
+}
 
 </style>
 
@@ -152,6 +160,7 @@ img {vertical-align: middle;}
       <h3>Right Aligned Navbar</h3>
       <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
       <svg width="960" height="500"></svg>
+      <div id="tooltip"></div>
 </div>
 
 <div class="mySlides">
@@ -236,7 +245,17 @@ function showSlides(n) {
             .attr("x", function(d) { return x(d.Day); })
             .attr("y", function(d) { return y(d.Frequency); })
             .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(d.Frequency); });
+            .attr('height', 0)
+            .transition().duration(1000)
+            .attr("height", function(d) { return height - y(d.Frequency); })
+            .on("mouseover", function(d,i) {
+                tooltip.style("opacity", 1)
+               .style("left",(d3.event.pageX)+"px")
+               .style("top",(d3.event.pageY)+"px")
+               .html("Date: January "+d.Day+" 2018 <br/>  Number of records: "+d.Frequency);
+            });
+       
+    .on("mouseout", function() { tooltip.style("opacity", 0) })
        
          svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + (height+margin.top) + ")")
