@@ -253,9 +253,8 @@ function showSlides(n) {
                .style("left",(d3.event.pageX)+"px")
                .style("top",(d3.event.pageY)+"px")
                .html("Date: January "+d.Day+" 2018 <br/>  Number of records: "+d.Frequency);
-            });
-       
-    .on("mouseout", function() { tooltip.style("opacity", 0) })
+            })
+          .on("mouseout", function() { tooltip.style("opacity", 0) });
        
          svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + (height+margin.top) + ")")
