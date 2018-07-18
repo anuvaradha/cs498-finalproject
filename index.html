@@ -213,8 +213,6 @@ function showSlides(n) {
 </script>
   
    <script>
-    
-    var tooltip = d3.select("#tooltip");
      
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
@@ -249,9 +247,10 @@ function showSlides(n) {
             .attr("width", x.bandwidth())
             .attr("height", function(d) { return height - y(d.Frequency); })
             .on("mouseover", function(d,i) {
+                var tooltip = d3.select("#tooltip");
                 tooltip.style("opacity", 1)
-               .style("left",(d3.event.pageX)+"px")
-               .style("top",(d3.event.pageY)+"px")
+               .style("left", (d3.select(this).attr("x"))+"px")
+               .style("top",(d3.select(this).attr("y"))+"px")
                .html("Date: January "+d.Day+" 2018 <br/>  Number of records: "+d.Frequency);
             })
           .on("mouseout", function() { tooltip.style("opacity", 0) });
