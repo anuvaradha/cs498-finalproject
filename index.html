@@ -245,8 +245,6 @@ function showSlides(n) {
             .attr("x", function(d) { return x(d.Day); })
             .attr("y", function(d) { return y(d.Frequency); })
             .attr("width", x.bandwidth())
-            .attr('height', 0)
-            .transition().duration(1000)
             .attr("height", function(d) { return height - y(d.Frequency); })
             .on("mouseover", function(d,i) {
                 tooltip.style("opacity", 1)
