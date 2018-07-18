@@ -237,6 +237,8 @@ function showSlides(n) {
 
         x.domain(data.map(function(d) { return d.Day; }));
         y.domain([0, d3.max(data, function(d) { return d.Frequency; })]);
+       
+        var tooltip = d3.select("#tooltip");
 
         g.selectAll(".bar")
           .data(data)
@@ -247,7 +249,6 @@ function showSlides(n) {
             .attr("width", x.bandwidth())
             .attr("height", function(d) { return height - y(d.Frequency); })
             .on("mouseover", function(d,i) {
-                var tooltip = d3.select("#tooltip");
                 tooltip.style("opacity", 1)
                .style("left", (d3.select(this).attr("x"))+"px")
                .style("top",(d3.select(this).attr("y"))+"px")
