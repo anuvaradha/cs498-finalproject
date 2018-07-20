@@ -346,9 +346,9 @@ function showSlides(n) {
         d3.csv(csvFile,
         function(d) {
           return {
-            day: +d.day,
-            hour: +d.hour,
-            value: +d.value
+            day: +d.Day,
+            hour: +d.Hour,
+            value: +d.Value
           };
         },
         function(error, data) {
