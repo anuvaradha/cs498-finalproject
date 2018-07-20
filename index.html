@@ -342,7 +342,7 @@ function showSlides(n) {
             .attr("transform", "translate(" + gridSize / 2 + ", -6)")
             .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
-      var heatmapChart = function(csvFile) {
+      /*var heatmapChart = function(csvFile) {
         d3.csv(csvFile,
         function(d) {
           return {
@@ -400,21 +400,21 @@ function showSlides(n) {
           legend.exit().remove();
 
         });  
-      };
+      };*/
 
-      heatmapChart(datasets[0]);
+      /*heatmapChart(datasets[0]);*/
       
       var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
         .data(datasets);
 
-      datasetpicker.enter()
+      /*datasetpicker.enter()
         .append("input")
         .attr("value", function(d){ return "Dataset " + d })
         .attr("type", "button")
         .attr("class", "dataset-button")
         .on("click", function(d) {
           heatmapChart(d);
-        });
+        });*/
     </script>
 
 </body>
