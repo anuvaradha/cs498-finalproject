@@ -305,9 +305,9 @@ function showSlides(n) {
    </script>
   
    <script type="text/javascript">
-      var margin = { top: 50, right: 0, bottom: 100, left: 30 },
-          width = 960 - margin.left - margin.right,
-          height = 430 - margin.top - margin.bottom,
+      var margin2 = { top: 50, right: 0, bottom: 100, left: 30 },
+          width2 = 960 - margin.left - margin.right,
+          height2 = 430 - margin.top - margin.bottom,
           gridSize = Math.floor(width / 24),
           legendElementWidth = gridSize*2,
           buckets = 9,
@@ -316,13 +316,13 @@ function showSlides(n) {
           times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
           datasets = ["Chart2_data.csv"];
 
-      var svg = d3.select("#chart").append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
+      var chart2 = d3.select("#chart").append("svg")
+          .attr("width", width2 + margin2.left + margin2.right)
+          .attr("height", height2 + margin2.top + margin2.bottom)
           .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-      var dayLabels = svg.selectAll(".dayLabel")
+      var dayLabels = chart2.selectAll(".dayLabel")
           .data(days)
           .enter().append("text")
             .text(function (d) { return d; })
@@ -332,7 +332,7 @@ function showSlides(n) {
             .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
             .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
 
-      var timeLabels = svg.selectAll(".timeLabel")
+      var timeLabels = chart2.selectAll(".timeLabel")
           .data(times)
           .enter().append("text")
             .text(function(d) { return d; })
