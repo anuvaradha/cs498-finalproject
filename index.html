@@ -165,13 +165,34 @@ img {vertical-align: middle;}
     <ul class="nav navbar-nav">
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <button type="button" class="btn btn-primary navbar-btn">
+      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">
             <span class="glyphicon"></span> 
             About this visualization
           </button>
     </ul>
   </div>
 </nav>
+  
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
  
 <div class="slideshow-container">
 
