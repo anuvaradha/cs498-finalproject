@@ -290,6 +290,14 @@ function showSlides(n) {
             .attr("y", function(d) { return y(d.Frequency); })
             .attr("width", x.bandwidth())
             .attr("height", function(d) { return height - y(d.Frequency); })
+            .text(function(d) {
+                var newYears = "New Years Day";
+                var mlk = "MLK Day";
+                if ( d.Day == 1)
+                  return newYears;
+                if( d.Day == 15)
+                  return mlk;
+              })
             .on("mouseover", function(d,i) {
                 tooltip.style("opacity", 1)
                .style("left", (d)+"px")
@@ -334,7 +342,7 @@ function showSlides(n) {
           buckets = 9,
           colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
           days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12a"];
           var datasets = ["Chart2_data.csv", "Week1_data.csv", "Week2_data.csv", "Week3_data.csv", "Week4_data.csv"];
 
       var chart2 = d3.select("#chart").append("svg")
