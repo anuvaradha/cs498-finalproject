@@ -291,12 +291,7 @@ function showSlides(n) {
             .attr("width", x.bandwidth())
             .attr("height", function(d) { return height - y(d.Frequency); })
             .text(function(d) {
-                var newYears = "New Years Day";
-                var mlk = "MLK Day";
-                if ( d.Day == 1)
-                  return newYears;
-                if( d.Day == 15)
-                  return mlk;
+                return d.Frequency;
               })
             .on("mouseover", function(d,i) {
                 tooltip.style("opacity", 1)
@@ -438,7 +433,10 @@ function showSlides(n) {
 
       datasetpicker.enter()
         .append("input")
-        .attr("value", function(d){ return "Dataset " + d })
+        .attr("value", function(d, i){ 
+            var names = ["All weeks", "Week 1", "Week 2", "Week 3", "Week 4"];
+            return names[i];
+          })
         .attr("type", "button")
         .attr("class", "dataset-button")
         .on("click", function(d) {
