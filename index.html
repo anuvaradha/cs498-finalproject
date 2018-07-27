@@ -141,6 +141,13 @@ img {vertical-align: middle;}
       text.axis-worktime {
         fill: #000;
       }
+  
+  text.label {
+  fill:white;
+  font: 15px;  
+  font-weight: 400;
+  text-anchor: middle;
+}
 
 </style>
 
@@ -303,8 +310,9 @@ function showSlides(n) {
           .enter()
           .append("text")
           .attr("class","label")
+          .attr("transform", "rotate(-90)")
           .attr("x", (function(d) { return x(d.Day); }  ))
-          .attr("y", function(d) { return y(d.Frequency); })
+          .attr("y", function(d) { return y(d.Frequency)/2; })
           .attr("dy", ".75em")
           .text(function(d) { return d.Frequency; }); 
        
