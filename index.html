@@ -311,7 +311,13 @@ function showSlides(n) {
           .append("text")
           .attr("class","label")
           .attr("transform", "rotate(-90)")
-          .attr("x", -400)
+          .attr("x", function(d) {
+                if(d.Day == 1)
+                   return -400;
+                if(d.Day == 15)
+                  return -350;
+                return 0;
+            })
           .attr("y", function(d) {
                 if(d.Day == 1)
                    return 10;
