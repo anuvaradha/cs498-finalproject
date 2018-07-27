@@ -314,12 +314,16 @@ function showSlides(n) {
           .attr("x", function(d) {
                 if(d.Day == 1)
                    return -400;
+                if(d.Day == 7 || d.Day == 14 || d.Day == 21 || d.Day == 38)
+                   return -400;
                 if(d.Day == 15)
                   return -350;
                 return 0;
             })
           .attr("y", function(d) {
                 if(d.Day == 1)
+                   return 10;
+                if(d.Day == 7 || d.Day == 14 || d.Day == 21 || d.Day == 38)
                    return 10;
                 if(d.Day == 15)
                   return 418;
@@ -329,6 +333,8 @@ function showSlides(n) {
           .text(function(d) { 
                if(d.Day == 1) 
                   return  "New Years Day";
+                if(d.Day == 7 || d.Day == 14 || d.Day == 21 || d.Day == 38)
+                  return "Sunday";
                if(d.Day == 15) 
                   return  "Martin Luther King Jr. Day";
                 return "";
