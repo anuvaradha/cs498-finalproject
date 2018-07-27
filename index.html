@@ -311,10 +311,14 @@ function showSlides(n) {
           .append("text")
           .attr("class","label")
           .attr("transform", "rotate(-90)")
-          .attr("x", (function(d) { return x(d.Day); }  ))
-          .attr("y", function(d) { return y(d.Frequency); })
+          .attr("x", -400)
+          .attr("y", 10)
           .attr("dy", ".75em")
-          .text(function(d) { return d.Frequency; }); 
+          .text(function(d) { 
+               if(d.Day == 1) 
+                  return  "New Years Day";
+                return "";
+            }); 
        
          svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + (height+margin.top) + ")")
