@@ -312,7 +312,7 @@ function showSlides(n) {
           .attr("class","label")
           .attr("transform", "rotate(-90)")
           .attr("x", (function(d) { return x(d.Day); }  ))
-          .attr("y", function(d) { return y(d.Frequency)/2; })
+          .attr("y", function(d) { return y(d.Frequency); })
           .attr("dy", ".75em")
           .text(function(d) { return d.Frequency; }); 
        
