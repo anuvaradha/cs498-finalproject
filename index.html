@@ -290,9 +290,6 @@ function showSlides(n) {
             .attr("y", function(d) { return y(d.Frequency); })
             .attr("width", x.bandwidth())
             .attr("height", function(d) { return height - y(d.Frequency); })
-            .text(function(d) {
-                return d.Frequency;
-              })
             .on("mouseover", function(d,i) {
                 tooltip.style("opacity", 1)
                .style("left", (d)+"px")
@@ -300,6 +297,16 @@ function showSlides(n) {
                .html("Date: January "+d.Day+" 2018 <br/>  Number of records: "+d.Frequency);
             })
           .on("mouseout", function() { tooltip.style("opacity", 0) });
+       
+        g.selectAll(".text")  		
+          .data(data)
+          .enter()
+          .append("text")
+          .attr("class","label")
+          .attr("x", (function(d) { return xScale(d.Day) + xScale.rangeBand() / 2 ; }  ))
+          .attr("y", function(d) { return yScale(d.Frequency); })
+          .attr("dy", ".75em")
+          .text(function(d) { return d.Frequency; }); 
        
          svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + (height+margin.top) + ")")
