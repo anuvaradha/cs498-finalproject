@@ -312,11 +312,19 @@ function showSlides(n) {
           .attr("class","label")
           .attr("transform", "rotate(-90)")
           .attr("x", -400)
-          .attr("y", 10)
+          .attr("y", function(d) {
+                if(d.Day == 1)
+                   return 10;
+                if(d.Day == 15)
+                  return 418;
+                return 0;
+            })
           .attr("dy", ".75em")
           .text(function(d) { 
                if(d.Day == 1) 
                   return  "New Years Day";
+               if(d.Day == 15) 
+                  return  "Martin Luther King Jr. Day";
                 return "";
             }); 
        
