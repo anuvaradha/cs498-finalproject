@@ -303,8 +303,8 @@ function showSlides(n) {
           .enter()
           .append("text")
           .attr("class","label")
-          .attr("x", (function(d) { return xScale(d.Day) + xScale.rangeBand() / 2 ; }  ))
-          .attr("y", function(d) { return yScale(d.Frequency); })
+          .attr("x", (function(d) { return x(d.Day) + x.rangeBand() / 2 ; }  ))
+          .attr("y", function(d) { return y(d.Frequency); })
           .attr("dy", ".75em")
           .text(function(d) { return d.Frequency; }); 
        
