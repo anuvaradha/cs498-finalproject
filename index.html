@@ -521,10 +521,6 @@ function showSlides(n) {
           })
         .attr("type", "button")
         .attr("class", "dataset-button")
-        .attr("class", function(d, i){
-            if(i == 0)
-             d3.select(d).classed("active", true); 
-        })
         .on("click", function(d) {
           heatmapChart(d);
           d3.selectAll(".dataset-button").classed("active", false);
