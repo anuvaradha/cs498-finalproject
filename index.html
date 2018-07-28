@@ -523,6 +523,7 @@ function showSlides(n) {
         .attr("class", "dataset-button")
         .on("click", function(d) {
           heatmapChart(d);
+          d3.select(this).classed("active", true);
         });
     </script>
 
