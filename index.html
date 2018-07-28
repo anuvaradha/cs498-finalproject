@@ -188,10 +188,18 @@ img {vertical-align: middle;}
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="About this Visualization">Modal Header</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <p>This visualization follows an interactive slideshow narrative visualization structure because I have specified the path that the user should take (author-led) and then the user is able to investigate details on each chart but must proceed on the defined path.</p>
+        <h6>Scenes </h6>
+        <p>There are a total of 4 scenes. The first scene is an introduction to the whole presentation and the last scene is a conclusion. The 2nd and 3rd scene contain charts. Each scene has a previous and next button and at the bottom, there are dots to allow the user to jump to any of the scenes they want. The 2nd scene is a bar graph with axes and titles. Bar graph was an appropriate choice to depict which day of the month had the most riders. The third scene is a heat map with the names of the days as the y axis and hours as the x axis. There is also a scale showing what each color represents. There are also buttons below the chart to allow the user to filter the data. A heat map was chosen so that the user could compare the most popular times across multiple days.</p>
+        <h6>Annotations </h6> 
+        <p>On the second scene, I have added text annotations on the bars to indicate whether they were a holiday or a sunday. This is useful for the user to see the trend of the number of rides whether it was a holiday or not. The inclusion of the text Sunday was to help demarcate when one week started/ended. This annotation is cleared when we move to the third scene because the axis has the text Sunday and we are more of focussing on the trends of which are the most popular hours rather than days.</p>
+        <h6>Parameters </h6>
+        <p>Each scene corresponds to a slide number and when the slide number is changed, it triggers a change in the display. On the 2nd scene, the parameters are the colors of the bar and the flag whether to show or hide the text that is shown at the bottom when hovered over a bar. On the 3rd scene, the parameters are the buttons at the bottom of the scene to determine which week of the data is to be displayed.</p>
+        <h6>Triggers </h6>
+        <p>The left and right arrows and the dots at the bottom are triggers in the sense that they control which scene to display. In the 2nd scene, when the selected bar is hovered over, it turns brown and also displays information about the bar at the bottom of the chart. In the 3rd scene, the buttons below the chart change the values in the heatmap and the scale (what range of values corresponds to what color). Also, a hover over each square displays the count of the rides.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
